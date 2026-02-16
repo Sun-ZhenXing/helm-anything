@@ -1,0 +1,67 @@
+cluster:
+  enabled: false
+
+service:
+  type: LoadBalancer
+
+persistence:
+  enabled: true
+  storageClass: local-path
+  accessMode: ReadWriteOnce
+  size: 50Gi
+
+attu:
+  enabled: true
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations: {}
+    hosts:
+      - attu.local
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  annotations: {}
+  labels: {}
+  rules:
+    - host: milvus.local
+      path: /
+      pathType: Prefix
+
+standalone:
+  enabled: true
+  resources:
+    limits:
+      cpu: "1"
+      memory: "2Gi"
+    requests:
+      cpu: "0.1"
+      memory: "512Mi"
+  persistence:
+    persistentVolumeClaim:
+      storageClass: local-path
+
+pulsarv3:
+  enabled: false
+
+minio:
+  enabled: true
+  name: minio
+  mode: standalone
+  persistence:
+    enabled: true
+    existingClaim: ""
+    storageClass: local-path
+    accessMode: ReadWriteOnce
+    size: 500Gi
+
+etcd:
+  enabled: true
+  name: etcd
+  replicaCount: 3
+  persistence:
+    enabled: true
+    storageClass: local-path
+    accessMode: ReadWriteOnce
+    size: 10Gi

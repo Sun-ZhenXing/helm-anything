@@ -1,0 +1,31 @@
+clickhouse:
+  replicasCount: 3
+  shardsCount: 1
+  antiAffinity: true
+  defaultUser:
+    password: "clickhouse-password" # Change me!
+    allowExternalAccess: true
+  persistence:
+    enabled: true
+    size: 100Gi
+    storageClass: local-path
+    accessMode: ReadWriteOnce
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 4Gi
+    requests:
+      cpu: 500m
+      memory: 1Gi
+  service:
+    type: ClusterIP
+
+keeper:
+  enabled: true
+  replicaCount: 3
+  localStorage:
+    size: 10Gi
+    storageClass: local-path
+
+operator:
+  enabled: true

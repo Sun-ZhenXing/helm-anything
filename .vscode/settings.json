@@ -1,0 +1,24 @@
+{
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.markdownlint": "explicit"
+    },
+    "editor.quickSuggestions": {
+      "other": "off",
+      "comments": "off",
+      "strings": "off"
+    }
+  },
+  "[yaml]": {
+    "editor.formatOnSave": true
+  },
+  "[dockercompose]": {
+    "editor.formatOnSave": true
+  },
+  "files.eol": "\n",
+  "cSpell.enabled": false
+}

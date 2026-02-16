@@ -1,0 +1,21 @@
+# Ignore Helm chart default values files
+*-values.yaml
+values-*.yaml
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Editor directories and files
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+logs
+*.log

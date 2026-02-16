@@ -1,0 +1,20 @@
+architecture: standalone
+
+service:
+  type: LoadBalancer
+
+auth:
+  enabled: true
+  password: "password" # Change me!
+
+persistence:
+  enabled: true
+  storageClass: local-path
+
+resources:
+  limits:
+    cpu: "1"
+    memory: "2Gi"
+  requests:
+    cpu: "0.1"
+    memory: "512Mi"

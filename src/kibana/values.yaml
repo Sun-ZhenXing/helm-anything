@@ -1,0 +1,31 @@
+replicas: 3
+
+elasticsearchHosts: "http://elasticsearch:9200"
+
+resources:
+  requests:
+    cpu: "500m"
+    memory: "1Gi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"
+
+kibanaConfig:
+  kibana.yml: |
+    server.name: kibana
+    server.host: "0.0.0.0"
+
+service:
+  type: ClusterIP
+  port: 5601
+
+healthCheckPath: "/api/status"
+
+ingress:
+  enabled: false
+  className: "nginx"
+  hosts:
+    - host: kibana.example.com
+      paths:
+        - path: /
+          pathType: Prefix

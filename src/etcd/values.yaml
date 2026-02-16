@@ -1,0 +1,11 @@
+persistence:
+  enabled: true
+  storageClass: local-path
+
+resources:
+  requests:
+    cpu: 1
+    memory: 512Mi
+  limits:
+    cpu: 2
+    memory: 2048Mi

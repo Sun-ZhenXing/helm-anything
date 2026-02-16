@@ -1,0 +1,49 @@
+langfuse:
+  replicas: 3
+  web:
+    replicas: 3
+  salt:
+    value: "salt-key" # Change me: $ openssl rand -base64 32
+  nextauth:
+    url: http://langfuse-web:3000 # Change me if you change the web service name or port
+    secret:
+      value: "secret-key" # Change me: $ openssl rand -hex 32
+  additionalEnv:
+    - name: "DATABASE_URL"
+      value: "postgres://postgres:wFvh4a6QdJ@postgres-postgresql.db:5432/postgres_langfuse"
+  encryptionKey:
+    value: "encryption-key" # Change me: $ openssl rand -hex 32
+
+postgresql:
+  deploy: false
+  directUrl: "postgres://postgres:wFvh4a6QdJ@postgres-postgresql.db:5432/postgres_langfuse"
+  auth:
+    secretKeys:
+      adminPasswordKey: "wFvh4a6QdJ"
+  password: "wFvh4a6QdJ"
+
+redis:
+  auth:
+    password: "FfuNDfCpeUUmmcD5GS7FMBm"
+
+clickhouse:
+  auth:
+    password: "FfuNDfCpeUUmmcD5GS7FMBm"
+  clusterEnabled: true
+  replicaCount: 3
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "500m"
+    limits:
+      memory: "4Gi"
+      cpu: "1"
+  zookeeper:
+    enabled: true
+    resources:
+      requests:
+        memory: "512Mi"
+        cpu: "500m"
+      limits:
+        memory: "4Gi"
+        cpu: "1"

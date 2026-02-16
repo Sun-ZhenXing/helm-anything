@@ -1,0 +1,47 @@
+replicaCount: 3
+
+ingress:
+  enabled: true
+  className: nginx
+  pathType: Prefix
+  annotations: {}
+  host: phoenix.local
+
+postgresql:
+  enabled: false
+
+database:
+  allocatedStorageGiB: 100
+  defaultRetentionPolicyDays: 0
+  postgres:
+    db: phoenix
+    host: phoenix-postgres
+    password: phoenix-postgres-password # Change me!
+    port: 5432
+    schema: public
+    user: phoenix
+
+service:
+  type: LoadBalancer
+
+auth:
+  enableAuth: false
+  secret:
+    - key: "PHOENIX_SECRET"
+      value: "phoenix-secret" # Change me!
+    - key: "PHOENIX_ADMIN_SECRET"
+      value: "phoenix-admin-secret" # Change me!
+    - key: "PHOENIX_POSTGRES_PASSWORD"
+      value: "phoenix-postgres-password" # Change me!
+    - key: "PHOENIX_SMTP_PASSWORD"
+      value: "phoenix-smtp-password" # Change me!
+    - key: "PHOENIX_DEFAULT_ADMIN_INITIAL_PASSWORD"
+      value: "phoenix-default-admin-initial-password" # Change me!
+
+resources:
+  limits:
+    cpu: "1"
+    memory: "2Gi"
+  requests:
+    cpu: "0.1"
+    memory: "512Mi"
