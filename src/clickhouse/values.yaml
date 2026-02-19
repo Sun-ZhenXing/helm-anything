@@ -3,7 +3,7 @@ clickhouse:
   shardsCount: 1
   antiAffinity: true
   defaultUser:
-    password: "clickhouse-password" # Change me!
+    password: clickhouse-password # Change me!
     allowExternalAccess: true
   persistence:
     enabled: true

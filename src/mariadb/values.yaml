@@ -1,0 +1,33 @@
+# MariaDB Configuration
+# https://github.com/CloudPirates-io/helm-charts/tree/main/charts/mariadb
+
+auth:
+  enabled: true
+  rootPassword: mariadb-root-password # Change me!
+  database: mariadb
+  username: mariadb
+  password: mariadb-password # Change me!
+
+service:
+  type: ClusterIP
+  port: 3306
+
+persistence:
+  enabled: true
+  storageClass: local-path
+  accessModes:
+    - ReadWriteOnce
+  size: 8Gi
+
+resources:
+  limits:
+    cpu: '1'
+    memory: 1Gi
+  requests:
+    cpu: '0.1'
+    memory: 512Mi
+
+# Galera Cluster Configuration
+galera:
+  enabled: false
+  replicaCount: 3

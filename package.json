@@ -1,0 +1,19 @@
+{
+  "name": "helm-anything",
+  "version": "1.0.0",
+  "description": "Helm command templates for quick service deployment",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["helm", "kubernetes", "deployment"],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.25.0",
+  "devDependencies": {
+    "@antfu/eslint-config": "^7.4.3",
+    "eslint": "^10.0.0"
+  }
+}

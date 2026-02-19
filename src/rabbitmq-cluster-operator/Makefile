@@ -1,0 +1,16 @@
+HELM_RELEASE_NAME ?= rabbitmq-cluster-operator
+HELM_APPLICATION_NAME ?= rabbitmq-cluster-operator
+HELM_NAMESPACE ?= rabbitmq-cluster-operator
+HELM_DIR ?= ./helm
+HELM_CHART_VERSION ?= 0.2.0
+HELM_VALUES_FILE ?= ./values.yaml
+HELM_OCI_REGISTRY ?= docker.io
+HELM_OCI_NAMESPACE ?= cloudpirates
+HELM_OCI_USERNAME ?=
+HELM_OCI_PASSWORD ?=
+HELM_REPO_NAME ?=
+HELM_REPO_URL ?=
+HELM_CHART_REPO ?= oci://$(HELM_OCI_REGISTRY)/$(HELM_OCI_NAMESPACE)/$(HELM_APPLICATION_NAME)
+HELM_LANE ?=
+
+include ../_template/base.mk

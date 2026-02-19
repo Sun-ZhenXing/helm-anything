@@ -2,18 +2,18 @@ replicas: 3
 minimumMasterNodes: 2
 
 volumeClaimTemplate:
-  accessModes: ["ReadWriteOnce"]
+  accessModes: [ReadWriteOnce]
   resources:
     requests:
       storage: 30Gi
 
 resources:
   requests:
-    cpu: "500m"
-    memory: "2Gi"
+    cpu: 500m
+    memory: 2Gi
   limits:
-    cpu: "1000m"
-    memory: "2Gi"
+    cpu: 1000m
+    memory: 2Gi
 
 esConfig:
   elasticsearch.yml: |
@@ -25,14 +25,14 @@ esConfig:
     http.cors.allow-origin: "*"
     http.cors.allow-headers: Authorization,X-Requested-With,Content-Type,Content-Length
 
-esJavaOpts: "-Xmx1g -Xms1g"
+esJavaOpts: -Xmx1g -Xms1g
 
 service:
   type: ClusterIP
   port: 9200
-  nodePort: ""
+  nodePort: ''
 
 xpack:
   enabled: false
 
-clusterHealthCheckParams: "wait_for_status=yellow&timeout=1s"
+clusterHealthCheckParams: 'wait_for_status=yellow&timeout=1s'

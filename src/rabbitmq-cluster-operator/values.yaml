@@ -1,0 +1,27 @@
+# RabbitMQ Cluster Operator Configuration
+# https://github.com/CloudPirates-io/helm-charts/tree/main/charts/rabbitmq-cluster-operator
+
+clusterOperator:
+  replicaCount: 1
+  watchAllNamespaces: true
+
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+msgTopologyOperator:
+  enabled: true
+  replicaCount: 1
+  watchAllNamespaces: true
+
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi

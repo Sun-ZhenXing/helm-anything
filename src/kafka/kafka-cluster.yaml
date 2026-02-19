@@ -21,7 +21,7 @@ spec:
       transaction.state.log.min.isr: 2
       default.replication.factor: 3
       min.insync.replicas: 2
-      inter.broker.protocol.version: "3.6"
+      inter.broker.protocol.version: '3.6'
     storage:
       type: jbod
       volumes:
@@ -32,10 +32,10 @@ spec:
     resources:
       requests:
         memory: 2Gi
-        cpu: "1"
+        cpu: '1'
       limits:
         memory: 2Gi
-        cpu: "2"
+        cpu: '2'
   zookeeper:
     replicas: 3
     storage:
@@ -45,24 +45,24 @@ spec:
     resources:
       requests:
         memory: 1Gi
-        cpu: "0.5"
+        cpu: '0.5'
       limits:
         memory: 1Gi
-        cpu: "1"
+        cpu: '1'
   entityOperator:
     topicOperator:
       resources:
         requests:
           memory: 512Mi
-          cpu: "0.2"
+          cpu: '0.2'
         limits:
           memory: 512Mi
-          cpu: "0.5"
+          cpu: '0.5'
     userOperator:
       resources:
         requests:
           memory: 512Mi
-          cpu: "0.2"
+          cpu: '0.2'
         limits:
           memory: 512Mi
-          cpu: "0.5"
+          cpu: '0.5'

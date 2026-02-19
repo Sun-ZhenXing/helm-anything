@@ -8,12 +8,12 @@ persistence:
 
 auth:
   enabled: true
-  password: "password" # Change me!
+  password: password # Change me!
 
 resources:
   limits:
-    cpu: "1"
-    memory: "2Gi"
+    cpu: '1'
+    memory: 2Gi
   requests:
-    cpu: "0.1"
-    memory: "512Mi"
+    cpu: '0.1'
+    memory: 512Mi

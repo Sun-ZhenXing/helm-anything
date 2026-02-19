@@ -14,15 +14,19 @@ The following services are currently supported:
 - Elasticsearch
 - etcd
 - Kafka
+- Keycloak
 - Kibana
 - Langfuse
+- MariaDB
 - Milvus
 - MinIO
 - MongoDB
+- Nginx
 - OpenTelemetry Collector
 - Phoenix
 - PostgreSQL
 - RabbitMQ
+- RabbitMQ Cluster Operator
 - Redis
 - Valkey
 - ZooKeeper

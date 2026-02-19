@@ -33,11 +33,11 @@ standalone:
   enabled: true
   resources:
     limits:
-      cpu: "1"
-      memory: "2Gi"
+      cpu: '1'
+      memory: 2Gi
     requests:
-      cpu: "0.1"
-      memory: "512Mi"
+      cpu: '0.1'
+      memory: 512Mi
   persistence:
     persistentVolumeClaim:
       storageClass: local-path
@@ -51,7 +51,7 @@ minio:
   mode: standalone
   persistence:
     enabled: true
-    existingClaim: ""
+    existingClaim: ''
     storageClass: local-path
     accessMode: ReadWriteOnce
     size: 500Gi
