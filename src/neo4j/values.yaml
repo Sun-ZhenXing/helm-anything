@@ -1,0 +1,17 @@
+# Neo4j Helm Chart Values
+# https://github.com/neo4j/helm-charts/blob/main/neo4j/values.yaml
+
+# Default values for neo4j
+# This is a YAML-formatted file
+
+neo4j:
+  name: neo4j
+  acceptLicenseAgreement: no
+  edition: community
+  password: password
+
+services:
+  neo4j:
+    enabled: true
+    spec:
+      type: ClusterIP

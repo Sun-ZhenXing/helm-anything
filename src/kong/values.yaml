@@ -1,0 +1,27 @@
+# Kong Helm Chart Values
+# https://github.com/Kong/charts/blob/main/charts/kong/values.yaml
+
+# Default values for kong
+# This is a YAML-formatted file
+
+image:
+  repository: kong
+  tag: '3.5'
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+ingressController:
+  enabled: true
+  installCRDs: false
+
+proxy:
+  type: LoadBalancer
+  http:
+    enabled: true
+    servicePort: 80
+    containerPort: 8000
+  tls:
+    enabled: true
+    servicePort: 443
+    containerPort: 8443

@@ -1,0 +1,29 @@
+# GitLab Runner Helm Chart Values
+# https://gitlab.com/gitlab-org/charts/gitlab-runner/-/blob/main/values.yaml
+
+# Default values for gitlab-runner
+# This is a YAML-formatted file
+
+image:
+  repository: gitlab/gitlab-runner
+  tag: alpine
+  pullPolicy: IfNotPresent
+
+gitlabUrl: 'https://gitlab.example.com'
+runnerRegistrationToken: ''
+
+concurrent: 10
+
+rbac:
+  create: true
+  rules:
+    - apiGroups: ['']
+      resources: [pods, pods/exec, pods/attach, secrets, configmaps]
+      verbs: [get, list, watch, create, patch, delete, update]
+
+runners:
+  config: |
+    [[runners]]
+      [runners.kubernetes]
+        namespace = "{{.Release.Namespace}}"
+        image = "ubuntu:22.04"

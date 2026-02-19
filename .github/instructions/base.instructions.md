@@ -41,6 +41,6 @@ When contributing to or maintaining this project, you must adhere to the followi
 ## 3. Summary & Attention Points
 
 * **User Experience:** The ultimate goal is simplicity. A user should not need to hunt for Helm flags; they should just run `make install` and get a sensible default deployment.
-* **Source Quality:** Priority is given to official or widely trusted community Charts (like Bitnami) to ensure stability.
+* **Source Quality:** Priority is given to official or widely trusted community Charts (Prohibited from using Bitnami) to ensure stability.
 * **Localization:** Do not skip the Chinese documentation (`README.zh.md`); it is a strict requirement for this project.
 * **Consistency:** Ensure all Makefiles follow the same variable naming convention defined in `src/_template` to prevent breaking the inheritance chain.

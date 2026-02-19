@@ -1,0 +1,26 @@
+# Grafana Helm Chart Values
+# https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+
+# Default values for grafana
+# This is a YAML-formatted file
+
+replicas: 1
+
+image:
+  repository: grafana/grafana
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3000
+
+admin:
+  existingSecret: ''
+  passwordKey: admin-password
+  userKey: admin-user
+
+persistence:
+  enabled: true
+  type: pvc
+  size: 10Gi

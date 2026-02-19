@@ -1,0 +1,16 @@
+HELM_RELEASE_NAME ?= neo4j
+HELM_APPLICATION_NAME ?= neo4j
+HELM_NAMESPACE ?= neo4j
+HELM_DIR ?= ./helm
+HELM_CHART_VERSION ?=
+HELM_VALUES_FILE ?= ./values.yaml
+HELM_OCI_REGISTRY ?=
+HELM_OCI_NAMESPACE ?=
+HELM_OCI_USERNAME ?=
+HELM_OCI_PASSWORD ?=
+HELM_REPO_NAME ?= neo4j
+HELM_REPO_URL ?= https://helm.neo4j.com/neo4j
+HELM_CHART_REPO ?= $(HELM_REPO_NAME)/neo4j
+HELM_LANE ?=
+
+include ../_template/base.mk

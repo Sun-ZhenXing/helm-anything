@@ -1,0 +1,16 @@
+HELM_RELEASE_NAME ?= harbor
+HELM_APPLICATION_NAME ?= harbor
+HELM_NAMESPACE ?= harbor
+HELM_DIR ?= ./helm
+HELM_CHART_VERSION ?=
+HELM_VALUES_FILE ?= ./values.yaml
+HELM_OCI_REGISTRY ?=
+HELM_OCI_NAMESPACE ?=
+HELM_OCI_USERNAME ?=
+HELM_OCI_PASSWORD ?=
+HELM_REPO_NAME ?= harbor
+HELM_REPO_URL ?= https://helm.goharbor.io
+HELM_CHART_REPO ?= $(HELM_REPO_NAME)/harbor
+HELM_LANE ?=
+
+include ../_template/base.mk

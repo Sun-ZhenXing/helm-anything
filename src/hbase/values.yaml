@@ -1,0 +1,22 @@
+# HBase Helm Chart Values
+# https://github.com/apecloud/kubeblocks-addons/blob/main/addons/hbase/values.yaml
+
+# Default values for hbase
+# This is a YAML-formatted file
+
+nameOverride: ''
+fullnameOverride: ''
+
+hbase:
+  master:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+  regionServer:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi

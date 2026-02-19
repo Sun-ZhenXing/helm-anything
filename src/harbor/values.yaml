@@ -1,0 +1,22 @@
+# Harbor Helm Chart Values
+# https://github.com/goharbor/harbor-helm/blob/master/values.yaml
+
+# Default values for harbor
+# This is a YAML-formatted file
+
+expose:
+  type: ingress
+  tls:
+    enabled: false
+  ingress:
+    hosts:
+      core: harbor.local
+      notary: notary.harbor.local
+
+externalURL: https://harbor.local
+
+harborAdminPassword: Harbor12345
+
+persistence:
+  enabled: true
+  resourcePolicy: keep

@@ -1,0 +1,38 @@
+# Gitea Actions Helm Chart Values
+# https://gitea.com/gitea/helm-actions/src/branch/main/values.yaml
+
+# Default values for gitea-actions
+# This is a YAML-formatted file
+
+statefulset:
+  replicaCount: 1
+  timezone: Etc/UTC
+
+  actRunner:
+    registry: docker.gitea.com
+    repository: act_runner
+    tag: 0.2.13
+    pullPolicy: IfNotPresent
+    config: |
+      log:
+        level: info
+      runner:
+        file: .runner
+        capacity: 1
+        timeout: 1h
+        shutdown_timeout: 0s
+      cache:
+        enabled: true
+        dir: "/root/.cache/actcache"
+      container:
+        network: ""
+        privileged: false
+        options: ""
+        valid_volumes: []
+      host:
+        workdir_parent: "/root/.cache/act"
+
+  dind:
+    registry: ''
+    repository: docker
+    tag: 28.3.3-dind

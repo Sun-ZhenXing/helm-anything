@@ -1,0 +1,20 @@
+# Flink Kubernetes Operator Helm Chart Values
+# https://github.com/apache/flink-kubernetes-operator/blob/main/helm/flink-kubernetes-operator/values.yaml
+
+# Default values for flink-operator
+# This is a YAML-formatted file
+
+image:
+  repository: flink-kubernetes-operator
+  pullPolicy: IfNotPresent
+
+replicas: 1
+
+webhook:
+  create: true
+
+defaultConfiguration:
+  create: true
+  flink-conf.yaml: |
+    kubernetes.operator.metrics.enabled: true
+    kubernetes.operator.metrics.port: 9999

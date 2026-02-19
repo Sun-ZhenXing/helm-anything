@@ -1,0 +1,38 @@
+# JupyterHub Helm Chart Values for DuckDB environment
+# https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/main/jupyterhub/values.yaml
+
+# Default values for duckdb/jupyterhub
+# This is a YAML-formatted file
+
+hub:
+  config:
+    Authenticator:
+      admin_users:
+        - admin
+    JupyterHub:
+      admin_access: true
+      authenticator_class: dummy
+      password: admin
+  services: {}
+  baseUrl: /
+
+proxy:
+  service:
+    type: ClusterIP
+
+singleuser:
+  image:
+    name: jupyter/datascience-notebook
+    tag: latest
+  defaultUrl: /lab
+  extraEnv:
+    - name: JUPYTER_ENABLE_LAB
+      value: yes
+  cmd: jupyterhub-singleuser
+  storage:
+    type: dynamic
+    capacity: 10Gi
+
+prePuller:
+  hook:
+    enabled: false

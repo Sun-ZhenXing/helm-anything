@@ -1,0 +1,32 @@
+# Gitea Helm Chart Values
+# https://gitea.com/gitea/helm-chart/src/branch/main/values.yaml
+
+# Default values for gitea
+# This is a YAML-formatted file
+
+replicaCount: 1
+
+image:
+  repository: gitea/gitea
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  http:
+    type: ClusterIP
+    port: 3000
+  ssh:
+    type: ClusterIP
+    port: 22
+
+gitea:
+  config:
+    APP_NAME: 'Gitea: Git with a cup of tea'
+    repository:
+      ROOT: /data/git/gitea-repositories
+    server:
+      ROOT_URL: http://gitea.local/
+    database:
+      DB_TYPE: sqlite3
+    security:
+      INSTALL_LOCK: true

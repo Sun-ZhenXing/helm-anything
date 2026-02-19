@@ -1,0 +1,19 @@
+# MySQL InnoDB Cluster Helm Chart Values
+# https://github.com/mysql/mysql-operator/blob/main/helm/mysql-innodbcluster/values.yaml
+
+# Default values for mysql-innodbcluster
+# This is a YAML-formatted file
+
+credentials:
+  root:
+    host: '%'
+    password: password
+    user: root
+
+serverInstances: 3
+
+router:
+  instances: 1
+
+tls:
+  useSelfSigned: true

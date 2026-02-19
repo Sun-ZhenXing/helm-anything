@@ -1,0 +1,19 @@
+# Apache Pulsar Helm Chart Values
+# https://github.com/apache/pulsar-helm-chart/blob/master/charts/pulsar/values.yaml
+
+# Default values for pulsar
+# This is a YAML-formatted file
+
+components:
+  zookeeper: true
+  bookkeeper: true
+  broker: true
+  proxy: true
+  functions: false
+  prometheus: false
+  grafana: false
+  node_exporter: false
+
+monitoring:
+  prometheus: false
+  grafana: false

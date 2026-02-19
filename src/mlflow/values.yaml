@@ -1,0 +1,26 @@
+# MLflow Helm Chart Values
+# https://github.com/community-charts/helm-charts/blob/main/charts/mlflow/values.yaml
+
+# Default values for mlflow
+# This is a YAML-formatted file
+
+replicaCount: 1
+
+image:
+  repository: burakince/mlflow
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5000
+
+backendStore:
+  databaseMigration: true
+  postgres:
+    enabled: true
+    host: postgresql
+    port: 5432
+    database: mlflow
+    user: mlflow
+    password: mlflow

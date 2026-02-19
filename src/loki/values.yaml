@@ -1,0 +1,18 @@
+# Loki Helm Chart Values
+# https://github.com/grafana/helm-charts/blob/main/charts/loki/values.yaml
+
+# Default values for loki
+# This is a YAML-formatted file
+
+loki:
+  auth_enabled: false
+  commonConfig:
+    replication_factor: 1
+  storage:
+    type: filesystem
+
+singleBinary:
+  replicas: 1
+  persistence:
+    enabled: true
+    size: 10Gi
