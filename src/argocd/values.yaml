@@ -1,0 +1,31 @@
+# Argo CD Configuration
+# https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml
+
+configs:
+  secret:
+    argocdServerAdminPassword: $2a$10$m9ZR7FP.6zSFhjDHndyeJuruTzZNjf7qCkybF7N7sNCGBqDXm7vwK # admin
+    argocdServerAdminPasswordMtime: '2024-01-01T00:00:00Z'
+
+server:
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: false
+
+dex:
+  enabled: true
+
+redis:
+  enabled: true
+
+repoServer:
+  replicas: 1
+
+controller:
+  replicas: 1
+
+applicationSet:
+  enabled: true
+
+notifications:
+  enabled: false

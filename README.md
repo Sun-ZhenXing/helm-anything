@@ -10,26 +10,71 @@ This project provides a collection of Helm chart configurations for popular serv
 
 The following services are currently supported:
 
+### Databases & Storage
+
 - ClickHouse
+- DuckDB
 - Elasticsearch
 - etcd
+- HBase
 - Kafka
-- Keycloak
-- Kibana
-- Langfuse
 - MariaDB
 - Milvus
 - MinIO
 - MongoDB
-- Nginx
-- OpenTelemetry Collector
-- Phoenix
+- MySQL
+- Neo4j
 - PostgreSQL
+- Pulsar
 - RabbitMQ
 - RabbitMQ Cluster Operator
 - Redis
 - Valkey
+- Vault
 - ZooKeeper
+
+### DevOps & CI/CD
+
+- ArgoCD
+- Gitea
+- Gitea Runner
+- GitLab
+- GitLab Runner
+- Harbor
+- Jenkins
+- Nexus
+
+### Data & Analytics
+
+- Airflow
+- Apache Flink
+
+### Observability & Monitoring
+
+- Grafana
+- Kibana
+- Langfuse
+- Loki
+- OpenTelemetry Collector
+- Phoenix
+- Prometheus
+
+### Streaming & API Gateway
+
+- Apache Pulsar
+- Kong
+- Nginx
+
+### AI & ML
+
+- LiteLLM
+- MLflow
+- Open WebUI
+
+### Identity & Service Mesh
+
+- Keycloak
+- Nacos
 
 Each service has its own directory under `src/`, containing:
 

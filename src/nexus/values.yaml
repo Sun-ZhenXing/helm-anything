@@ -1,0 +1,84 @@
+# Nexus Repository Manager Configuration
+# https://github.com/sonatype/helm3-charts/blob/main/charts/nexus-repository-manager/values.yaml
+
+image:
+  repository: sonatype/nexus3
+  tag: 3.68.1
+  pullPolicy: IfNotPresent
+
+# Resource configuration
+resources:
+  requests:
+    cpu: 500m
+    memory: 2Gi
+  limits:
+    cpu: 2000m
+    memory: 4Gi
+
+# JVM options
+env:
+  - name: INSTALL4J_ADD_VM_PARAMS
+    value: '-Xms2g -Xmx2g -XX:MaxDirectMemorySize=2g -XX:+UseG1GC'
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 8081
+
+# Ingress configuration
+ingress:
+  enabled: false
+
+# Persistence
+persistence:
+  enabled: true
+  storageSize: 100Gi
+  accessMode: ReadWriteOnce
+
+# Nexus configuration
+nexus:
+  # Security context
+  securityContext:
+    runAsUser: 200
+
+  # Additional volumes
+  extraVolumes: []
+
+  # Additional volume mounts
+  extraVolumeMounts: []
+
+  # Service configuration
+  service:
+    type: ClusterIP
+    port: 8081
+
+  # Docker registries configuration
+  docker:
+    enabled: false
+    registries: []
+
+# ConfigMap for initial configuration
+config:
+  enabled: false
+  mountPath: /sonatype-nexus-conf
+
+# License configuration (for Nexus Pro)
+license:
+  enabled: false
+  secretFilePath:
+
+# Backup configuration
+backup:
+  enabled: false
+
+# Route configuration (OpenShift)
+route:
+  enabled: false
+
+# ServiceAccount configuration
+serviceAccount:
+  create: true
+
+# RBAC configuration
+rbac:
+  create: true

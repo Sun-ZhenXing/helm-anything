@@ -7,8 +7,7 @@
 replicaCount: 1
 
 image:
-  repository: gitea/gitea
-  tag: latest
+  repository: gitea
   pullPolicy: IfNotPresent
 
 service:

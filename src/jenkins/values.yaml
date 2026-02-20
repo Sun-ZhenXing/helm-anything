@@ -1,0 +1,85 @@
+# Jenkins Configuration
+# https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/values.yaml
+
+controller:
+  image:
+    repository: jenkins/jenkins
+    tag: lts
+    pullPolicy: IfNotPresent
+
+  # Resource configuration
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 2Gi
+    limits:
+      cpu: 2000m
+      memory: 4Gi
+
+  # Java options
+  javaOpts: '-XX:MaxRAMPercentage=75.0'
+
+  # Service configuration
+  serviceType: ClusterIP
+  servicePort: 8080
+  targetPort: 8080
+
+  # Ingress configuration
+  ingress:
+    enabled: false
+
+  # Number of Jenkins controllers
+  replicaCount: 1
+
+  # Install plugins
+  installPlugins:
+    - kubernetes:3937.vd7b_82db_e347b_
+    - workflow-aggregator:596.v8c21c963d92d
+    - git:5.2.1
+    - configuration-as-code:1775.v810dc950b_514
+    - blue-ocean:1.27.13
+    - docker-workflow:572.v950f58993843
+    - pipeline-stage-view:2.34
+    - credentials-binding:642.v737c34dea_6c2
+    - credentials:1319.v7eb_51b_3a_c97b_
+
+  # Initialize configuration as code
+  JCasC:
+    enabled: true
+    defaultConfig: true
+    configScripts: {}
+
+  # Sidecars
+  sidecars:
+    configAutoReload:
+      enabled: true
+      image: kiwigrid/k8s-sidecar:1.26.1
+
+# Agent configuration
+agent:
+  enabled: true
+  image:
+    repository: jenkins/inbound-agent
+    tag: latest
+
+  # Resource configuration for agents
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+
+  # Working directory
+  workingDir: /home/jenkins/agent
+
+  # Pod template configuration
+  podName: default
+  customJenkinsLabels: []
+
+# Persistence
+persistence:
+  enabled: true
+  size: 10Gi
+  accessMode: ReadWriteOnce

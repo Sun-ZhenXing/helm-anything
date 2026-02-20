@@ -1,0 +1,118 @@
+# Apache Airflow Configuration
+# https://github.com/apache/airflow/blob/main/chart/values.yaml
+
+# Default airflow repository
+defaultAirflowRepository: apache/airflow
+
+# Default airflow tag
+defaultAirflowTag: 2.9.0
+
+# Airflow version
+airflowVersion: 2.9.0
+
+# Executor type
+executor: CeleryExecutor
+
+# Environment variables
+env:
+  - name: AIRFLOW__CORE__LOAD_EXAMPLES
+    value: 'False'
+  - name: AIRFLOW__WEBSERVER__EXPOSE_CONFIG
+    value: 'True'
+
+# Webserver configuration
+webserver:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+  service:
+    type: ClusterIP
+
+# Scheduler configuration
+scheduler:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+
+# Worker configuration (for CeleryExecutor)
+workers:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+
+# Triggerer configuration
+triggerer:
+  enabled: true
+  replicas: 1
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+
+# DAGs configuration
+dags:
+  persistence:
+    enabled: true
+    size: 5Gi
+    accessMode: ReadWriteOnce
+  gitSync:
+    enabled: false
+
+# Logs configuration
+logs:
+  persistence:
+    enabled: true
+    size: 10Gi
+
+# PostgreSQL configuration (subchart)
+postgresql:
+  enabled: true
+  auth:
+    username: postgres
+    database: airflow
+  primary:
+    persistence:
+      enabled: true
+      size: 10Gi
+
+# Redis configuration (subchart for Celery)
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: true
+      size: 5Gi
+
+# Flower configuration
+flower:
+  enabled: true
+  service:
+    type: ClusterIP
+
+# Ingress configuration
+ingress:
+  web:
+    enabled: false
+  flower:
+    enabled: false
