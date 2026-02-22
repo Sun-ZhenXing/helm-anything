@@ -1,0 +1,70 @@
+# Default values for K3k.
+# This is a YAML-formatted file.
+
+# Number of K3k controller replicas
+replicaCount: 1
+
+image:
+  repository: rancher/k3k
+  tag: v1.0.4
+  pullPolicy: IfNotPresent
+
+# Controller configuration
+controller:
+  enabled: true
+  # Feature gates to enable
+  featureGates: {}
+  # VirtualCluster: true
+  # SharedCluster: true
+
+# Webhook configuration
+webhook:
+  enabled: true
+  port: 9443
+
+# Resource limits and requests
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# Service account configuration
+serviceAccount:
+  create: true
+  name: ''
+  annotations: {}
+
+# RBAC configuration
+rbac:
+  create: true
+
+# Pod security context
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+
+# Security context
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+
+# Node selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity
+affinity: {}
+
+# Extra environment variables
+extraEnv: []
+
+# Extra arguments
+extraArgs: []

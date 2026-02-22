@@ -1,0 +1,128 @@
+# Default values for vCluster.
+# This is a YAML-formatted file.
+
+# vCluster version (Kubernetes version to use)
+vcluster:
+  image: rancher/k3s:v1.30.2-k3s2
+
+# Control plane configuration
+controlPlane:
+  distro:
+    k3s:
+      enabled: true
+      # k3s version
+      image: rancher/k3s:v1.30.2-k3s2
+
+  # Backing store configuration
+  backingStore:
+    etcd:
+      enabled: true
+      # embeddedEtcd:
+      #   enabled: false
+
+  # API server configuration
+  coredns:
+    enabled: true
+    # replicas: 1
+
+# Sync configuration
+sync:
+  # From host to virtual cluster
+  toHost:
+    pods:
+      enabled: true
+    secrets:
+      enabled: true
+      all: false
+    configmaps:
+      enabled: true
+      all: false
+    endpoints:
+      enabled: true
+    persistentVolumeClaims:
+      enabled: true
+    ingresses:
+      enabled: true
+    services:
+      enabled: true
+
+  # From virtual cluster to host
+  fromHost:
+    nodes:
+      enabled: false
+      # selector: ""
+    events:
+      enabled: true
+    storageClasses:
+      enabled: true
+
+# Networking configuration
+networking:
+  # Replicate services from host to virtual cluster
+  replicateServices:
+    fromHost: []
+    toHost: []
+
+  # Advanced cluster settings
+  advanced:
+    proxyKubelets:
+      byHostname: false
+      byIP: false
+
+# Resource limits
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+
+# RBAC configuration
+rbac:
+  clusterRole:
+    create: true
+
+# Service account
+serviceAccount:
+  create: true
+  name: ''
+
+# Security context
+security:
+  podSecurityStandard: baseline
+  # Run as user and group
+  podSecurityContext: {}
+  containerSecurityContext: {}
+
+# Persistence configuration
+persistence:
+  enabled: true
+  size: 5Gi
+  # storageClass: ""
+
+# Service configuration
+service:
+  type: ClusterIP
+
+# Ingress configuration
+ingress:
+  enabled: false
+  # host: vcluster.example.com
+  # annotations: {}
+  # tls: []
+
+# Multi-namespace mode
+multiNamespaceMode:
+  enabled: false
+
+# Isolation settings
+isolation:
+  enabled: false
+  podSecurityStandard: baseline
+  # nodeProxyPermission:
+  #   enabled: true
+
+# Telemetry
+telemetry:
+  disabled: false

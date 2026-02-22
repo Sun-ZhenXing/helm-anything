@@ -11,6 +11,5 @@ HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= gitea
 HELM_REPO_URL ?= https://dl.gitea.com/charts
 HELM_CHART_REPO ?= $(HELM_REPO_NAME)/actions
-HELM_LANE ?=
 
 include ../_template/base.mk

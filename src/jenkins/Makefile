@@ -11,6 +11,5 @@ HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= jenkins
 HELM_REPO_URL ?= https://charts.jenkins.io
 HELM_CHART_REPO ?= $(HELM_REPO_NAME)/$(HELM_APPLICATION_NAME)
-HELM_LANE ?=
 
 include ../_template/base.mk

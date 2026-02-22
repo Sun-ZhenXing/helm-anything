@@ -1,0 +1,78 @@
+# Rainbond Helm Chart Values
+# https://github.com/goodrain/rainbond-chart
+
+Cluster:
+  # Gateway ingress IPs
+  gatewayIngressIPs: []
+
+  # Nodes for gateway
+  nodesForGateway: []
+
+  # Containerd runtime path, will auto-detect if not set
+  containerdRuntimePath: ''
+
+# Enable UI
+ui:
+  enabled: true
+
+# Enable hub
+hub:
+  enabled: true
+
+# Enable region
+region:
+  enabled: true
+
+# Enable console
+console:
+  enabled: true
+
+# Enable chaos
+chaos:
+  enabled: true
+
+# Enable monitor
+monitor:
+  enabled: true
+
+# Enable worker
+worker:
+  enabled: true
+
+# Enable mq
+mq:
+  enabled: true
+
+# Enable eventlog
+eventlog:
+  enabled: true
+
+# Enable webcli
+webcli:
+  enabled: true
+
+# Enable api
+api:
+  enabled: true
+
+# Enable grctl
+grctl:
+  enabled: true
+
+# PVC configuration
+pvc:
+  # Storage class name
+  storageClassName: ''
+  # Access mode
+  accessMode: ReadWriteOnce
+  # Storage size
+  storageSize: 10Gi
+
+# Resource configuration
+resources:
+  limits:
+    cpu: '2'
+    memory: 4Gi
+  requests:
+    cpu: '0.5'
+    memory: 1Gi

@@ -11,6 +11,5 @@ HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= prometheus-community
 HELM_REPO_URL ?= https://prometheus-community.github.io/helm-charts
 HELM_CHART_REPO ?= $(HELM_REPO_NAME)/kube-prometheus-stack
-HELM_LANE ?=
 
 include ../_template/base.mk

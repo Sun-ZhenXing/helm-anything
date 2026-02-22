@@ -1,0 +1,15 @@
+HELM_RELEASE_NAME ?= vcluster
+HELM_APPLICATION_NAME ?= vcluster
+HELM_NAMESPACE ?= vcluster
+HELM_DIR ?= ./helm
+HELM_CHART_VERSION ?=
+HELM_VALUES_FILE ?= ./values.yaml
+HELM_OCI_REGISTRY ?=
+HELM_OCI_NAMESPACE ?=
+HELM_OCI_USERNAME ?=
+HELM_OCI_PASSWORD ?=
+HELM_REPO_NAME ?= loft-sh
+HELM_REPO_URL ?= https://charts.loft.sh
+HELM_CHART_REPO ?= $(HELM_REPO_NAME)/$(HELM_APPLICATION_NAME)
+
+include ../_template/base.mk

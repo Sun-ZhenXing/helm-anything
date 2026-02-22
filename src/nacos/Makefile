@@ -11,6 +11,5 @@ HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= nacos
 HELM_REPO_URL ?= https://nacos-charts.storage.googleapis.com
 HELM_CHART_REPO ?= $(HELM_REPO_NAME)/nacos
-HELM_LANE ?=
 
 include ../_template/base.mk

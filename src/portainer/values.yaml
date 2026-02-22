@@ -1,0 +1,65 @@
+# Default values for Portainer.
+# This is a YAML-formatted file.
+
+replicaCount: 1
+
+image:
+  repository: portainer/portainer-ce
+  tag: lts
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  httpPort: 9000
+  httpsPort: 9443
+  httpNodePort: 30777
+  httpsNodePort: 30779
+
+# Enable persistence using Persistent Volume Claims
+persistence:
+  enabled: true
+  size: 10Gi
+  # storageClass: ""
+  # existingClaim: ""
+
+# Resource limits and requests
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# Ingress configuration
+ingress:
+  enabled: false
+  # ingressClassName: nginx
+  # annotations:
+  #   nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+  # hosts:
+  #   - host: portainer.example.com
+  #     paths:
+  #       - path: /
+  #         pathType: Prefix
+  # tls:
+  #   - secretName: portainer-tls
+  #     hosts:
+  #       - portainer.example.com
+
+# TLS configuration
+tls:
+  force: true
+
+# Feature flags
+feature:
+  flags: ''
+
+# Node selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity
+affinity: {}

@@ -11,6 +11,5 @@ HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= mysql-operator
 HELM_REPO_URL ?= https://mysql.github.io/mysql-operator/
 HELM_CHART_REPO ?= $(HELM_REPO_NAME)/mysql-innodbcluster
-HELM_LANE ?=
 
 include ../_template/base.mk

@@ -11,6 +11,5 @@ HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= litellm
 HELM_REPO_URL ?= https://berriai.github.io/litellm-helm
 HELM_CHART_REPO ?= $(HELM_REPO_NAME)/litellm-helm
-HELM_LANE ?=
 
 include ../_template/base.mk

@@ -11,6 +11,5 @@ HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= flink-operator
 HELM_REPO_URL ?= https://downloads.apache.org/flink/flink-kubernetes-operator-1.9.0/
 HELM_CHART_REPO ?= $(HELM_REPO_NAME)/flink-operator
-HELM_LANE ?=
 
 include ../_template/base.mk

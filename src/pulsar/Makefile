@@ -11,6 +11,5 @@ HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= apache
 HELM_REPO_URL ?= https://pulsar.apache.org/charts
 HELM_CHART_REPO ?= $(HELM_REPO_NAME)/pulsar
-HELM_LANE ?=
 
 include ../_template/base.mk

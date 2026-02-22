@@ -1,0 +1,55 @@
+# Sealos Helm Chart Values
+# https://github.com/seal-io/helm-charts
+
+# Image configuration
+image:
+  repository: sealos
+  tag: ''
+  pullPolicy: IfNotPresent
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 6443
+
+# Persistence configuration
+persistence:
+  enabled: true
+  storageClass: ''
+  accessMode: ReadWriteOnce
+  size: 10Gi
+
+# Authentication configuration
+auth:
+  enableTLS: false
+  tlsSecret: ''
+
+# Resource configuration
+resources:
+  limits:
+    cpu: '2'
+    memory: 4Gi
+  requests:
+    cpu: '0.5'
+    memory: 1Gi
+
+# Node selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity
+affinity: {}
+
+# Ingress configuration
+ingress:
+  enabled: false
+  className: ''
+  annotations: {}
+  hosts:
+    - host: sealos.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []

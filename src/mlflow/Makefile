@@ -11,6 +11,5 @@ HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= community-charts
 HELM_REPO_URL ?= https://community-charts.github.io
 HELM_CHART_REPO ?= $(HELM_REPO_NAME)/mlflow
-HELM_LANE ?=
 
 include ../_template/base.mk

@@ -2,13 +2,7 @@ import antfu from '@antfu/eslint-config'
 
 export default antfu({
   // Enable YAML support
-  yaml: {
-    overrides: {
-      // For Helm values files, allow flexible string styles
-      'yaml/quotes': ['error', { prefer: 'single', avoidEscape: true }],
-      // 'yaml/plain-scalar': 'off',
-    },
-  },
+  yaml: true,
   // Disable other language support we don't need
   typescript: false,
   vue: false,
@@ -26,10 +20,6 @@ export default antfu({
     '**/node_modules/**',
     '**/.git/**',
   ],
-}, {
-  // Disable sort keys rule for JSON files
-  files: ['**/package.json'],
-  rules: {
-    'jsonc/sort-keys': 'off',
-  },
+  // Lint readme files
+  markdown: true,
 })

@@ -11,6 +11,5 @@ HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= kong
 HELM_REPO_URL ?= https://charts.konghq.com
 HELM_CHART_REPO ?= $(HELM_REPO_NAME)/kong
-HELM_LANE ?=
 
 include ../_template/base.mk

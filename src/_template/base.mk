@@ -1,3 +1,12 @@
+HELM_DIR ?= ./helm
+HELM_CHART_VERSION ?=
+HELM_OCI_REGISTRY ?=
+HELM_OCI_NAMESPACE ?=
+HELM_OCI_USERNAME ?=
+HELM_OCI_PASSWORD ?=
+
+LOGS_TAIL ?= 100
+
 .PHONY: repo-add
 repo-add:
 ifdef HELM_REPO_NAME
@@ -19,7 +28,8 @@ install:
 		--namespace $(HELM_NAMESPACE) \
 		--create-namespace \
 		$(if $(HELM_CHART_VERSION),--version $(HELM_CHART_VERSION),) \
-		--values $(HELM_VALUES_FILE) > output.log 2>&1 || (cat output.log && exit 1)
+		--values $(HELM_VALUES_FILE) > output.log 2>&1 || (cat output.log && exit 1) \
+		$(if $(HELM_INSTALL_ARGS),$(HELM_INSTALL_ARGS),)
 
 .PHONY: uninstall
 uninstall:
@@ -27,7 +37,9 @@ uninstall:
 
 .PHONY: values
 values:
-	helm show values $(HELM_CHART_REPO) > $(HELM_APPLICATION_NAME)-values.yaml
+	helm show values $(HELM_CHART_REPO) \
+	$(if $(HELM_CHART_VERSION),--version $(HELM_CHART_VERSION),) \
+	> $(HELM_APPLICATION_NAME)-values.yaml
 
 .PHONY: versions
 versions:
@@ -61,4 +73,4 @@ helm-push:
 
 .PHONY: logs
 logs:
-	kubectl logs -n $(HELM_NAMESPACE) -l app=$(HELM_APPLICATION_NAME) --tail=100 --follow
+	kubectl logs -n $(HELM_NAMESPACE) -l app=$(HELM_APPLICATION_NAME) --tail=$(LOGS_TAIL) --follow

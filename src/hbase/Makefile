@@ -11,6 +11,5 @@ HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= kubeblocks
 HELM_REPO_URL ?= https://kubeblocks.io/charts
 HELM_CHART_REPO ?= $(HELM_REPO_NAME)/hbase-cluster
-HELM_LANE ?=
 
 include ../_template/base.mk

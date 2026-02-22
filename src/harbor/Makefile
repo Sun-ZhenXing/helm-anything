@@ -11,6 +11,5 @@ HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= harbor
 HELM_REPO_URL ?= https://helm.goharbor.io
 HELM_CHART_REPO ?= $(HELM_REPO_NAME)/harbor
-HELM_LANE ?=
 
 include ../_template/base.mk
