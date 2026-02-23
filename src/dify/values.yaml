@@ -1,0 +1,119 @@
+# Dify Configuration
+# https://github.com/langgenius/dify-helm
+
+# API Server configuration
+api:
+  replicaCount: 1
+  image:
+    repository: langgenius/dify-api
+    tag: 0.6.9
+  service:
+    type: ClusterIP
+    port: 5001
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+  env:
+    - name: MODE
+      value: api
+    - name: SECRET_KEY
+      value: sk-9f73s3ljTXVcMT3Blb3ljTqtsKiBacb72
+    - name: LOG_LEVEL
+      value: INFO
+
+# Web Frontend configuration
+web:
+  replicaCount: 1
+  image:
+    repository: langgenius/dify-web
+    tag: 0.6.9
+  service:
+    type: ClusterIP
+    port: 3000
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 200m
+      memory: 512Mi
+  env:
+    - name: CONSOLE_API_URL
+      value: http://dify-api:5001
+    - name: APP_API_URL
+      value: http://dify-api:5001
+
+# Worker configuration
+worker:
+  replicaCount: 1
+  image:
+    repository: langgenius/dify-api
+    tag: 0.6.9
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 200m
+      memory: 512Mi
+  env:
+    - name: MODE
+      value: worker
+
+# PostgreSQL configuration (built-in)
+postgresql:
+  enabled: true
+  auth:
+    username: dify
+    password: dify
+    database: dify
+  primary:
+    persistence:
+      enabled: true
+      size: 10Gi
+    resources:
+      requests:
+        cpu: 200m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+
+# Redis configuration (built-in)
+redis:
+  enabled: true
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: true
+      size: 5Gi
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 256Mi
+
+# Weaviate vector database (built-in)
+weaviate:
+  enabled: true
+  persistence:
+    enabled: true
+    size: 10Gi
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+
+# Ingress configuration (disabled by default)
+ingress:
+  enabled: false

@@ -1,0 +1,55 @@
+# Logstash Configuration
+# https://github.com/elastic/helm-charts
+
+# Logstash image
+image: docker.elastic.co/logstash/logstash
+imageTag: 8.11.0
+
+# Replicas
+replicas: 1
+
+# Resource configuration
+resources:
+  requests:
+    cpu: 500m
+    memory: 1Gi
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+
+# Logstash Java options
+logstashJavaOpts: -Xmx1g -Xms1g
+
+# Pipeline configuration
+logstashPipeline:
+  logstash.conf: |
+    input {
+      beats {
+        port => 5044
+      }
+    }
+    output {
+      stdout {
+        codec => rubydebug
+      }
+    }
+
+# Service configuration
+service:
+  type: ClusterIP
+  ports:
+    - name: beats
+      port: 5044
+      protocol: TCP
+      targetPort: 5044
+
+# Persistence (disabled by default)
+persistence:
+  enabled: false
+  size: 10Gi
+
+# Volume mounts
+volumeMounts: []
+
+# Volumes
+volumes: []

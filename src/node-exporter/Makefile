@@ -1,0 +1,13 @@
+HELM_RELEASE_NAME ?= node-exporter
+HELM_APPLICATION_NAME ?= prometheus-node-exporter
+HELM_NAMESPACE ?= monitoring
+HELM_DIR ?= ./helm
+HELM_CHART_VERSION ?=
+HELM_VALUES_FILE ?= ./values.yaml
+HELM_OCI_REGISTRY ?= ghcr.io
+HELM_OCI_NAMESPACE ?= prometheus-community/charts
+HELM_OCI_USERNAME ?=
+HELM_OCI_PASSWORD ?=
+HELM_CHART_REPO ?= oci://$(HELM_OCI_REGISTRY)/$(HELM_OCI_NAMESPACE)/$(HELM_APPLICATION_NAME)
+
+include ../_template/base.mk

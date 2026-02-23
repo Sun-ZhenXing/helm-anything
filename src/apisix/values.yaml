@@ -1,0 +1,53 @@
+# Apache APISIX Configuration
+# https://github.com/apache/apisix-helm-chart
+
+# APISIX server configuration
+apisix:
+  enabled: true
+  image:
+    repository: apache/apisix
+    tag: 3.9.0
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+  # Admin API configuration
+  admin:
+    enabled: true
+    port: 9180
+    credentials:
+      admin: edd1c9f034335f136f87ad84b625c8f1
+      viewer: 4054f7cf07e344346cd3f287985e76a2
+
+  # Proxy configuration
+  proxy:
+    http:
+      enabled: true
+      port: 9080
+    tls:
+      enabled: false
+
+# etcd configuration
+etcd:
+  enabled: true
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+# Dashboard configuration (disabled by default)
+dashboard:
+  enabled: false
+
+# Ingress Controller configuration (disabled by default)
+ingress-controller:
+  enabled: false

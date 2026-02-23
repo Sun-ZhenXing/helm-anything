@@ -1,0 +1,53 @@
+# NebulaGraph Cluster Configuration
+# https://github.com/vesoft-inc/nebula-operator
+
+# Cluster name
+nameOverride: nebula
+
+# NebulaGraph version
+nebula:
+  version: v3.6.0
+
+# Graphd configuration (query engine)
+graphd:
+  replicas: 3
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+  service:
+    type: ClusterIP
+
+# Metad configuration (metadata service)
+metad:
+  replicas: 3
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  storage:
+    size: 10Gi
+
+# Storaged configuration (storage engine)
+storaged:
+  replicas: 3
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+  storage:
+    size: 50Gi
+
+# Reference to existing nebula-operator
+operator:
+  name: nebula-operator
+  namespace: nebula-operator

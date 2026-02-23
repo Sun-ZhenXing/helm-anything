@@ -1,0 +1,45 @@
+# kgateway Configuration
+# https://github.com/kgateway-dev/kgateway
+
+# Controller configuration
+controller:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+# Envoy gateway configuration
+gateway:
+  replicas: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+  service:
+    type: LoadBalancer
+
+# Discovery configuration
+discovery:
+  enabled: true
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+# Observability configuration
+observability:
+  enabled: true
+
+# GatewayClass configuration
+gatewayClass:
+  name: kgateway
