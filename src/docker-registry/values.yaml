@@ -1,0 +1,43 @@
+# Docker Registry Configuration
+# https://github.com/twuni/docker-registry.helm
+
+# Registry image
+image:
+  repository: registry
+  tag: 2.8.3
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 5000
+
+# Persistence (disabled by default - use S3 or other storage for production)
+persistence:
+  enabled: false
+  size: 10Gi
+
+# Storage configuration
+storage: memory
+
+# Authentication (disabled by default)
+secrets:
+  htpasswd: ''
+
+# TLS configuration (disabled by default)
+tlsSecretName: ''
+
+# Resource configuration
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+# Replicas
+replicaCount: 1
+
+# Ingress configuration (disabled by default)
+ingress:
+  enabled: false

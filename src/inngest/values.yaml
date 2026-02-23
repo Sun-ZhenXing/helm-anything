@@ -1,0 +1,49 @@
+# Inngest Configuration
+# https://github.com/inngest/inngest-helm
+
+# Server configuration
+replicaCount: 1
+
+image:
+  repository: inngest/inngest
+  tag: latest
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 8288
+
+# PostgreSQL configuration (required)
+postgres:
+  enabled: false
+  host: ''
+  port: 5432
+  database: inngest
+  user: inngest
+  password: ''
+
+# Redis configuration (optional but recommended)
+redis:
+  enabled: false
+  host: ''
+  port: 6379
+
+# Event API configuration
+eventApi:
+  enabled: true
+
+# Dashboard configuration
+dashboard:
+  enabled: true
+
+# Ingress configuration (disabled by default)
+ingress:
+  enabled: false

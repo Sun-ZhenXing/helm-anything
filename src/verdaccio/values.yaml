@@ -1,0 +1,67 @@
+# Verdaccio Configuration
+# https://github.com/verdaccio/charts
+
+# Image configuration
+image:
+  repository: verdaccio/verdaccio
+  tag: 5.29
+
+# Replicas
+replicaCount: 1
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 4873
+
+# Resource configuration
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+# Persistence configuration
+persistence:
+  enabled: false
+  size: 10Gi
+
+# ConfigMap configuration
+configMap:
+  enabled: true
+  data:
+    config.yaml: |
+      storage: /verdaccio/storage/data
+      web:
+        enable: true
+        title: Verdaccio
+      auth:
+        htpasswd:
+          file: /verdaccio/storage/htpasswd
+          max_users: 1000
+      uplinks:
+        npmjs:
+          url: https://registry.npmjs.org/
+      packages:
+        '@*/*':
+          access: $all
+          publish: $authenticated
+          proxy: npmjs
+        '**':
+          access: $all
+          publish: $authenticated
+          proxy: npmjs
+      middlewares:
+        audit:
+          enabled: true
+      logs:
+        - { type: stdout, format: pretty, level: http }
+      max_body_size: 100mb
+      listen:
+        - 0.0.0.0:4873
+
+# Ingress configuration (disabled by default)
+ingress:
+  enabled: false

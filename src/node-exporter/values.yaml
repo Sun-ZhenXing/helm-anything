@@ -1,0 +1,59 @@
+# Prometheus Node Exporter Configuration
+# https://github.com/prometheus-community/helm-charts
+
+# Image configuration
+image:
+  repository: quay.io/prometheus/node-exporter
+  tag: v1.7.0
+
+# Run as DaemonSet
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 9100
+  targetPort: 9100
+
+# Host networking
+hostNetwork: true
+
+# Host PID
+hostPID: true
+
+# Security context
+securityContext:
+  privileged: true
+
+# RBAC
+rbac:
+  create: true
+  pspEnabled: false
+
+# Service account
+serviceAccount:
+  create: true
+
+# Pod security policy
+podSecurityPolicy:
+  enabled: false
+
+# Prometheus monitoring
+prometheus:
+  monitor:
+    enabled: false
+
+# Node selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity
+affinity: {}

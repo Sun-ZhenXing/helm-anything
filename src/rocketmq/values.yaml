@@ -1,0 +1,53 @@
+# Apache RocketMQ Configuration
+# https://github.com/apache/rocketmq-helm
+
+# NameServer configuration
+nameserver:
+  replicas: 2
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+
+# Broker configuration
+broker:
+  size:
+    master: 1
+    replica: 1
+  replicas:
+    master: 1
+    slave: 1
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+  persistence:
+    enabled: true
+    size: 20Gi
+
+# Console configuration
+console:
+  enabled: true
+  replicas: 1
+  service:
+    type: ClusterIP
+    port: 8080
+
+# Service configuration
+service:
+  nameserver:
+    type: ClusterIP
+    port: 9876
+  broker:
+    type: ClusterIP
+
+# Image configuration
+image:
+  repository: apache/rocketmq
+  tag: 5.1.4
