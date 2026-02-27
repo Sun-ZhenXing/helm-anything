@@ -12,7 +12,7 @@ HELM_REPO_URL ?= https://strimzi.io/charts/
 # Operator configuration (Strimzi only has operator, cluster is created via CRDs)
 OPERATOR_RELEASE_NAME ?= strimzi-kafka-operator
 OPERATOR_NAMESPACE ?= strimzi-operator
-OPERATOR_CHART_REPO ?= strimzi/strimzi-kafka-operator
+OPERATOR_CHART_REPO ?= $(HELM_REPO_NAME)/strimzi-kafka-operator
 OPERATOR_CHART_VERSION ?= $(HELM_CHART_VERSION)
 OPERATOR_VALUES_FILE ?= ./values.yaml
 

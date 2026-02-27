@@ -10,6 +10,6 @@ HELM_OCI_USERNAME ?=
 HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= goodrain
 HELM_REPO_URL ?= https://openchart.goodrain.com/goodrain/rainbond
-HELM_CHART_REPO ?= goodrain/rainbond
+HELM_CHART_REPO ?= $(HELM_REPO_NAME)/$(HELM_APPLICATION_NAME)
 
 include ../_template/base.mk

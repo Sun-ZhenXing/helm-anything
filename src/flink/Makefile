@@ -8,18 +8,20 @@ HELM_OCI_REGISTRY ?=
 HELM_OCI_NAMESPACE ?=
 HELM_OCI_USERNAME ?=
 HELM_OCI_PASSWORD ?=
+HELM_REPO_NAME ?= flink-operator
+HELM_REPO_URL ?= https://downloads.apache.org/flink/flink-kubernetes-operator-1.9.0/
 
 # Operator configuration
 OPERATOR_RELEASE_NAME ?= flink-operator
 OPERATOR_NAMESPACE ?= flink-operator
-OPERATOR_CHART_REPO ?= flink-operator/flink-operator
+OPERATOR_CHART_REPO ?= $(HELM_REPO_NAME)/flink-operator
 OPERATOR_CHART_VERSION ?=
 OPERATOR_VALUES_FILE ?= ./values.yaml
 
 # Cluster configuration (Flink uses FlinkDeployment CR, installed via kubectl or separate chart)
 CLUSTER_RELEASE_NAME ?= flink-cluster
-CLUSTER_CHART_REPO ?= flink-operator/flink-cluster
-CLUSTER_VALUES_FILE ?= ./values-cluster.yaml
+CLUSTER_CHART_REPO ?= $(HELM_REPO_NAME)/flink-cluster
+CLUSTER_VALUES_FILE ?= ./cluster-values.yaml
 
 # Enable CRD waiting
 WAIT_FOR_CRD ?= true

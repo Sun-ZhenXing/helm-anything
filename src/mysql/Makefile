@@ -8,17 +8,19 @@ HELM_OCI_REGISTRY ?=
 HELM_OCI_NAMESPACE ?=
 HELM_OCI_USERNAME ?=
 HELM_OCI_PASSWORD ?=
+HELM_REPO_NAME ?= mysql-operator
+HELM_REPO_URL ?= https://mysql.github.io/mysql-operator/
 
 # Operator configuration
 OPERATOR_RELEASE_NAME ?= mysql-operator
 OPERATOR_NAMESPACE ?= mysql-operator
-OPERATOR_CHART_REPO ?= mysql-operator/mysql-operator
+OPERATOR_CHART_REPO ?= $(HELM_REPO_NAME)/mysql-operator
 OPERATOR_CHART_VERSION ?=
 OPERATOR_VALUES_FILE ?=
 
 # Cluster configuration
 CLUSTER_RELEASE_NAME ?= mysql-cluster
-CLUSTER_CHART_REPO ?= mysql-operator/mysql-innodbcluster
+CLUSTER_CHART_REPO ?= $(HELM_REPO_NAME)/mysql-innodbcluster
 CLUSTER_VALUES_FILE ?= ./values.yaml
 
 # Enable CRD waiting
