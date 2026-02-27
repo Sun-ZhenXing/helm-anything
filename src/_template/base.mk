@@ -28,8 +28,9 @@ install:
 		--namespace $(HELM_NAMESPACE) \
 		--create-namespace \
 		$(if $(HELM_CHART_VERSION),--version $(HELM_CHART_VERSION),) \
-		--values $(HELM_VALUES_FILE) > output.log 2>&1 || (cat output.log && exit 1) \
-		$(if $(HELM_INSTALL_ARGS),$(HELM_INSTALL_ARGS),)
+		--values $(HELM_VALUES_FILE) \
+		$(if $(HELM_INSTALL_ARGS),$(HELM_INSTALL_ARGS),) \
+		> output.log 2>&1 || (cat output.log && exit 1)
 
 .PHONY: uninstall
 uninstall:

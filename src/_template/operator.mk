@@ -17,6 +17,7 @@
 #   OPERATOR_CHART_VERSION   - The version of the operator chart
 #   OPERATOR_VALUES_FILE     - The values file for the operator
 #   CLUSTER_RELEASE_NAME     - The release name for the cluster/resource
+#   CLUSTER_CHART_REPO       - The Helm chart repository for the cluster (defaults to HELM_CHART_REPO)
 #   CLUSTER_VALUES_FILE      - The values file for the cluster/resource
 #   WAIT_FOR_CRD             - Set to "true" to wait for CRDs to be ready
 #   CRD_WAIT_TIMEOUT         - Timeout for waiting for CRDs (defaults to 60s)
@@ -56,7 +57,7 @@ endif
 .PHONY: install-cluster
 install-cluster:
 	@echo "Installing cluster: $(CLUSTER_RELEASE_NAME)..."
-	helm upgrade $(CLUSTER_RELEASE_NAME) $(HELM_CHART_REPO) \
+	helm upgrade $(CLUSTER_RELEASE_NAME) $(if $(CLUSTER_CHART_REPO),$(CLUSTER_CHART_REPO),$(HELM_CHART_REPO)) \
 		--install \
 		--namespace $(HELM_NAMESPACE) \
 		--create-namespace \
