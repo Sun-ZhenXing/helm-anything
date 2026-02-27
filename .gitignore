@@ -3,7 +3,6 @@ node_modules/
 
 # Ignore Helm chart default values files
 *-values.yaml
-values-*.yaml
 
 # Env
 .env

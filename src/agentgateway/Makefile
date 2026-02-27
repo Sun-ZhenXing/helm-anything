@@ -10,23 +10,14 @@ HELM_OCI_USERNAME ?=
 HELM_OCI_PASSWORD ?=
 HELM_CHART_REPO ?= oci://$(HELM_OCI_REGISTRY)/$(HELM_OCI_NAMESPACE)/$(HELM_APPLICATION_NAME)
 
+# CRD configuration
+CRD_INSTALL_GATEWAY_API = true
+CRD_HELM_CHART_REPO = oci://$(HELM_OCI_REGISTRY)/$(HELM_OCI_NAMESPACE)/agentgateway-crds
+CRD_HELM_RELEASE_NAME = agentgateway-crds
+
+# Gateway configuration
+GATEWAY_CLASS_NAME = agentgateway
+
 include ../_template/base.mk
-
-.PHONY: install-crds
-install-crds:
-	@echo "Installing Gateway API CRDs..."
-	kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/standard-install.yaml
-	@echo "Installing agentgateway CRDs..."
-	helm upgrade -i --create-namespace \
-		--namespace $(HELM_NAMESPACE) \
-		--version $(HELM_CHART_VERSION) \
-		agentgateway-crds oci://$(HELM_OCI_REGISTRY)/$(HELM_OCI_NAMESPACE)/agentgateway-crds
-
-.PHONY: install-all
-install-all: install-crds install
-
-.PHONY: verify
-verify:
-	@echo "Verifying agentgateway installation..."
-	kubectl get pods -n $(HELM_NAMESPACE)
-	kubectl get gatewayclass agentgateway
+include ../_template/crd.mk
+include ../_template/gateway.mk
