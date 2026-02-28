@@ -1,0 +1,33 @@
+# Flink Cluster Configuration (FlinkDeployment CR)
+# https://github.com/apache/flink-kubernetes-operator
+
+# Flink cluster name
+nameOverride: flink-cluster
+
+# Flink version
+flinkVersion: v1.19
+
+# Job configuration
+job:
+  jarURI: local:///opt/flink/examples/streaming/StateMachineExample.jar
+  parallelism: 2
+  upgradeMode: stateful
+  state: running
+
+# TaskManager configuration
+taskManager:
+  resource:
+    memory: 2048m
+    cpu: 1
+  replicas: 2
+
+# JobManager configuration
+jobManager:
+  resource:
+    memory: 1024m
+    cpu: 0.5
+  replicas: 1
+
+# Service configuration
+service:
+  type: ClusterIP

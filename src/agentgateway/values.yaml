@@ -1,0 +1,72 @@
+# Default values for agentgateway
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Controller configuration
+controller:
+  image:
+    repository: ghcr.io/kgateway-dev/agentgateway
+    tag: v2.2.1
+    pullPolicy: IfNotPresent
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  # Enable experimental Gateway API features
+  extraEnv:
+    KGW_ENABLE_GATEWAY_API_EXPERIMENTAL_FEATURES: 'false'
+
+# Gateway proxy configuration
+gatewayProxy:
+  image:
+    repository: ghcr.io/kgateway-dev/agentgateway-proxy
+    tag: v2.2.1
+    pullPolicy: IfNotPresent
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+# Service configuration
+service:
+  type: LoadBalancer
+  httpPort: 80
+  httpsPort: 443
+
+# RBAC configuration
+rbac:
+  create: true
+
+# Service account configuration
+serviceAccount:
+  create: true
+  annotations: {}
+
+# Pod security context
+podSecurityContext:
+  runAsNonRoot: true
+  seccompProfile:
+    type: RuntimeDefault
+
+# Security context for containers
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+
+# Node selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity
+affinity: {}

@@ -1,5 +1,5 @@
 HELM_RELEASE_NAME ?= duckdb
-HELM_APPLICATION_NAME ?= duckdb
+HELM_APPLICATION_NAME ?= jupyterhub
 HELM_NAMESPACE ?= duckdb
 HELM_DIR ?= ./helm
 HELM_CHART_VERSION ?=
@@ -10,6 +10,6 @@ HELM_OCI_USERNAME ?=
 HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= jupyterhub
 HELM_REPO_URL ?= https://hub.jupyter.org/helm-chart/
-HELM_CHART_REPO ?= $(HELM_REPO_NAME)/jupyterhub
+HELM_CHART_REPO ?= $(HELM_REPO_NAME)/$(HELM_APPLICATION_NAME)
 
 include ../_template/base.mk
