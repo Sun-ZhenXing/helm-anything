@@ -22,9 +22,21 @@ OPERATOR_VALUES_FILE ?=
 CLUSTER_RELEASE_NAME ?= mysql-cluster
 CLUSTER_CHART_REPO ?= $(HELM_REPO_NAME)/mysql-innodbcluster
 CLUSTER_VALUES_FILE ?= ./values.yaml
+HELM_CHART_REPO ?= $(CLUSTER_CHART_REPO)
 
 # Enable CRD waiting
 WAIT_FOR_CRD ?= true
 
 include ../_template/base.mk
 include ../_template/operator.mk
+
+# Install both operator and MySQL InnoDB Cluster by default
+.PHONY: install
+install:
+	@$(MAKE) repo-add
+	@$(MAKE) install-all
+
+# Uninstall both operator and MySQL InnoDB Cluster by default
+.PHONY: uninstall
+uninstall:
+	@$(MAKE) uninstall-all
