@@ -2,7 +2,9 @@
 
 ## 简介
 
-RabbitMQ Cluster Operator 是一个 Kubernetes 运营商，用于在 Kubernetes 上自动部署和管理 RabbitMQ 集群。
+RabbitMQ Cluster Operator 是一个 Kubernetes Operator，用于自动化 Kubernetes 上 RabbitMQ 集群的部署和管理。
+
+如需部署独立的 RabbitMQ（不使用 Operator），请参阅 [rabbitmq](../rabbitmq/) 目录。
 
 ## 安装
 
@@ -17,7 +19,7 @@ make install
 安装后，验证部署：
 
 ```bash
-kubectl get pods -n rabbitmq-cluster-operator
+kubectl get pods -n rabbitmq-operator
 ```
 
 要创建 RabbitMQ 集群，请应用 RabbitmqCluster 自定义资源：

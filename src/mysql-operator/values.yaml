@@ -1,0 +1,5 @@
+# MySQL Operator Configuration
+# https://github.com/mysql/mysql-operator
+
+# Default values for mysql-operator
+# Uses chart defaults for most settings

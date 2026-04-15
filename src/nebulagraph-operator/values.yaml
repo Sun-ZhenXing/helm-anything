@@ -1,0 +1,13 @@
+# NebulaGraph Operator Configuration
+# https://github.com/vesoft-inc/nebula-operator
+
+# Default values for nebula-operator
+replicaCount: 1
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi

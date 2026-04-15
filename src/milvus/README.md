@@ -4,6 +4,8 @@
 
 Milvus is an open-source vector database built to power embedding similarity search and AI applications.
 
+This chart deploys Milvus using the official Helm chart. For operator-managed Milvus clusters with automated stack deployment (including etcd, Pulsar, MinIO), see the [milvus-operator](../milvus-operator/) directory.
+
 ## Installation
 
 To install Milvus, run:

@@ -1,4 +1,8 @@
-# Kubernetes Operator Installation Template
+# DEPRECATED: This file is deprecated. Do not use for new services.
+# Operators and services should be in separate directories, each using base.mk directly.
+# See AGENTS.md "Operator / Service Separation" for details.
+#
+# Kubernetes Operator Installation Template (DEPRECATED)
 # This file provides common targets for deploying services using the Operator pattern.
 #
 # Usage:

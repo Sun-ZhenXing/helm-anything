@@ -1,0 +1,38 @@
+apiVersion: k8ssandra.io/v1alpha1
+kind: K8ssandraCluster
+metadata:
+  name: cassandra-cluster
+spec:
+  cassandra:
+    serverVersion: 4.0.1
+    datacenters:
+      - metadata:
+          name: dc1
+        size: 3
+        racks:
+          - name: rack1
+          - name: rack2
+          - name: rack3
+        storageConfig:
+          cassandraDataVolumeClaimSpec:
+            storageClassName: standard
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 10Gi
+        config:
+          jvmOptions:
+            heapSize: 1Gi
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 4Gi
+          limits:
+            cpu: 2000m
+            memory: 4Gi
+  reaper:
+    autoScheduling:
+      enabled: false
+  medusa:
+    storageProperties: {}

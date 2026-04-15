@@ -1,0 +1,19 @@
+# OpenLIT Operator Helm Chart Values
+# https://github.com/openlit/openlit
+
+# Operator image configuration
+image:
+  repository: ghcr.io/openlit/openlit-operator
+  pullPolicy: IfNotPresent
+
+# Operator replica count
+replicaCount: 1
+
+# Resource limits and requests
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi

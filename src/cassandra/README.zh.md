@@ -2,13 +2,13 @@
 
 ## 简介
 
-Apache Cassandra 是一个开源的分布式 NoSQL 数据库管理系统，设计用于在大量商用服务器上处理大量数据。此部署使用 K8ssandra Operator，它提供了一种 Kubernetes 原生的方式来管理 Cassandra 集群。
+Apache Cassandra 是一个免费、开源的分布式宽列存储 NoSQL 数据库管理系统，旨在处理大量跨多台商用服务器的数据。此 Chart 通过 K8ssandra 部署 Cassandra 集群，由 K8ssandra Operator 管理。
 
-K8ssandra 是 Apache Cassandra 的云原生发行版，可在 Kubernetes 上运行。它包括修复、备份和监控等运维任务的自动化。
+必须先安装 K8ssandra Operator — 请参阅 [cassandra-operator](../cassandra-operator/) 目录。
 
 ## 安装
 
-安装 Cassandra：
+要安装 Apache Cassandra，请运行：
 
 ```bash
 make install
@@ -16,67 +16,34 @@ make install
 
 ## 使用
 
-安装完成后，您可以创建 Cassandra 集群：
+安装完成后，验证部署：
 
 ```bash
-# 检查 operator 是否运行
 kubectl get pods -n cassandra
-
-# 创建 Cassandra 集群
-kubectl apply -f - <<EOF
-apiVersion: k8ssandra.io/v1alpha1
-kind: K8ssandraCluster
-metadata:
-  name: demo
-  namespace: cassandra
-spec:
-  cassandra:
-    serverVersion: "4.0.1"
-    datacenters:
-      - metadata:
-          name: dc1
-        size: 3
-        storageConfig:
-          cassandraDataVolumeClaimSpec:
-            storageClassName: standard
-            accessModes: ["ReadWriteOnce"]
-            resources:
-              requests:
-                storage: 10Gi
-        config:
-          jvmOptions:
-            heapSize: 1Gi
-EOF
 ```
 
-## 配置
-
-默认配置包括：
-
-- 用于管理 Cassandra 集群的 K8ssandra Operator
-- 支持 Cassandra 4.x
-- Medusa 用于备份管理
-- Reaper 用于修复调度
-- 通过 Prometheus 收集指标
-
-## 功能
-
-- **自动修复**: Reaper 处理修复调度
-- **备份/恢复**: Medusa 提供备份和恢复功能
-- **监控**: 集成的 Prometheus 指标
-- **多 DC 支持**: 跨多个数据中心部署
-
-## 连接 Cassandra
+检查 Cassandra 集群状态：
 
 ```bash
-# 获取 CQLSH 访问
-kubectl exec -it demo-dc1-default-sts-0 -n cassandra -c cassandra -- cqlsh
+kubectl get k8ssandraclusters -n cassandra
+```
+
+使用 cqlsh 连接 Cassandra：
+
+```bash
+kubectl exec -it -n cassandra cassandra-cluster-dc1-default-sts-0 -- cqlsh
 ```
 
 ## 卸载
 
-卸载：
+卸载 Cassandra：
 
 ```bash
 make uninstall
 ```
+
+## 文档
+
+- [K8ssandra 文档](https://docs.k8ssandra.io/)
+- [Apache Cassandra 文档](https://cassandra.apache.org/doc/latest/)
+- [K8ssandra Helm Chart](https://github.com/k8ssandra/k8ssandra-helm)

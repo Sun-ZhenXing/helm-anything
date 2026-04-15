@@ -1,7 +1,3 @@
----
-description: Describe the guidelines for contributing to the Helm Command Template project.
----
-
 # Helm Command Template Project Guidelines
 
 ## 1. Project Intent
@@ -34,6 +30,15 @@ When contributing to or maintaining this project, you must adhere to the followi
         1. **Introduction:** What the service is.
         2. **Installation:** How to use `make install`.
         3. **Usage:** Basic verification or connection steps.
+
+* **Operator / Service Separation:**
+  * **Operators and services MUST be in separate directories.** Never mix an operator deployment and its managed service/cluster in the same directory.
+  * An operator-only directory should be named `<service>-operator/` (e.g., `mysql-operator/`, `cassandra-operator/`).
+  * A service/cluster directory should use the plain service name (e.g., `mysql/`, `cassandra/`).
+  * The operator directory's Makefile should only include `../_template/base.mk` and deploy the operator chart directly via the standard `install` target. Do **not** use `operator.mk` in either directory — `operator.mk` is deprecated for new services.
+  * The service/cluster directory's README must state that the operator must be installed first, with a link to the operator directory (e.g., `See [mysql-operator](../mysql-operator/)`).
+  * If a service is inherently operator-only with no separate cluster chart (e.g., Strimzi Kafka), the directory should still be named `<service>-operator/` and include any sample CRD manifests (e.g., `kafka-cluster.yaml`) for creating resources after the operator is installed.
+  * When evaluating a new service that uses the operator pattern, search the upstream operator's GitHub repository and Helm chart registry to confirm the correct chart names and repo URLs for both the operator and the cluster/service charts.
 
 * **Command Interface:**
   * The end-user interaction must remain simple. The primary entry point for any service is executing `make install` inside its directory.

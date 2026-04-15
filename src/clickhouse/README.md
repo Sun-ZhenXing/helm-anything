@@ -4,6 +4,8 @@
 
 ClickHouse is an open-source column-oriented database management system for online analytical processing (OLAP).
 
+This chart deploys ClickHouse using the Altinity Helm chart. For operator-managed ClickHouse clusters with automated deployment, scaling, and configuration, see the [clickhouse-operator](../clickhouse-operator/) directory.
+
 ## Installation
 
 To install ClickHouse, run:

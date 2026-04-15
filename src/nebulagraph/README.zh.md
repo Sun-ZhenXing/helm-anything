@@ -1,10 +1,12 @@
-# NebulaGraph
+# NebulaGraph 集群
 
 ## 简介
 
 NebulaGraph 是一个开源的分布式图数据库，专为超大规模图数据而设计，具有毫秒级延迟。它为存储和处理图数据提供高性能、可扩展性和可用性。
 
-此 Helm Chart 使用 NebulaGraph Operator 在 Kubernetes 上部署 NebulaGraph 集群。
+此 Helm Chart 用于在 Kubernetes 上部署 NebulaGraph 集群。
+
+必须先安装 NebulaGraph Operator — 请参阅 [nebulagraph-operator](../nebulagraph-operator/) 目录。
 
 ## 安装
 
@@ -12,15 +14,6 @@ NebulaGraph 是一个开源的分布式图数据库，专为超大规模图数�
 
 ```bash
 make install
-```
-
-## 先决条件
-
-必须首先安装 NebulaGraph Operator：
-
-```bash
-helm repo add nebula-operator https://vesoft-inc.github.io/nebula-operator/charts
-helm install nebula-operator nebula-operator/nebula-operator --namespace nebula-operator --create-namespace
 ```
 
 ## 使用
