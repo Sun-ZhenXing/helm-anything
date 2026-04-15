@@ -1,0 +1,28 @@
+# K8ssandra Operator Configuration
+# https://github.com/k8ssandra/k8ssandra-operator
+
+# Operator configuration
+replicaCount: 1
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+# Medusa backup configuration
+medusa:
+  enabled: false
+
+# Prometheus monitoring
+monitoring:
+  enabled: false
+
+# Cluster-wide configuration
+clusterScoped: false
+
+# Webhook configuration
+webhook:
+  enabled: false

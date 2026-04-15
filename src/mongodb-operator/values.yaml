@@ -1,0 +1,17 @@
+# MongoDB Community Operator Configuration
+# https://github.com/mongodb/mongodb-kubernetes-operator
+
+# Default values for community-operator
+# Uses chart defaults for most settings
+
+# Resource configuration
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+# Watch namespace (empty string means all namespaces)
+watchNamespace: ''

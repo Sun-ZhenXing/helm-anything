@@ -4,6 +4,8 @@
 
 PostgreSQL is a powerful, open source object-relational database system with over 35 years of active development.
 
+This chart deploys a standalone PostgreSQL instance. For operator-managed PostgreSQL with automated high availability, failover, backup, and monitoring, see the [postgres-operator](../postgres-operator/) directory.
+
 ## Installation
 
 To install PostgreSQL, run:

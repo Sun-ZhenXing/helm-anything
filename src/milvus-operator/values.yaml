@@ -1,0 +1,14 @@
+# Milvus Operator Configuration
+# https://github.com/zilliztech/milvus-operator
+
+# Default values for milvus-operator
+# Uses chart defaults for most settings
+
+# Resource configuration
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi

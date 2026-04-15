@@ -1,5 +1,5 @@
-HELM_RELEASE_NAME ?= cassandra
-HELM_APPLICATION_NAME ?= cassandra
+HELM_RELEASE_NAME ?= k8ssandra
+HELM_APPLICATION_NAME ?= k8ssandra
 HELM_NAMESPACE ?= cassandra
 HELM_DIR ?= ./helm
 HELM_CHART_VERSION ?=
@@ -10,21 +10,6 @@ HELM_OCI_USERNAME ?=
 HELM_OCI_PASSWORD ?=
 HELM_REPO_NAME ?= k8ssandra
 HELM_REPO_URL ?= https://helm.k8ssandra.io/stable
-
-# Operator configuration
-OPERATOR_RELEASE_NAME ?= k8ssandra-operator
-OPERATOR_NAMESPACE ?= k8ssandra-operator
-OPERATOR_CHART_REPO ?= $(HELM_REPO_NAME)/k8ssandra-operator
-OPERATOR_CHART_VERSION ?=
-OPERATOR_VALUES_FILE ?= ./values.yaml
-
-# Cluster configuration
-CLUSTER_RELEASE_NAME ?= cassandra-cluster
-CLUSTER_CHART_REPO ?= $(HELM_REPO_NAME)/k8ssandra
-CLUSTER_VALUES_FILE ?= ./cluster-values.yaml
-
-# Enable CRD waiting
-WAIT_FOR_CRD ?= true
+HELM_CHART_REPO ?= $(HELM_REPO_NAME)/k8ssandra
 
 include ../_template/base.mk
-include ../_template/operator.mk

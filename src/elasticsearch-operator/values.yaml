@@ -1,0 +1,20 @@
+# ECK Operator Configuration
+# https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-install-helm.html
+
+# Default values for eck-operator
+# Uses chart defaults for most settings
+
+# Set to true to install CRDs
+installCRDs: true
+
+# Resource configuration
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+# Log level
+logVerbosity: 0

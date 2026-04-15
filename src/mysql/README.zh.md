@@ -1,12 +1,14 @@
-# MySQL (Oracle MySQL Operator)
+# MySQL InnoDB 集群
 
 ## 简介
 
-MySQL Operator for Kubernetes 在 Kubernetes 中管理 MySQL InnoDB 集群。它由 Oracle 的 MySQL 团队提供。
+MySQL InnoDB Cluster 为 MySQL 提供完整的高可用解决方案。此 Chart 部署 MySQL InnoDB Cluster 实例。
+
+必须先安装 MySQL Operator — 请参阅 [mysql-operator](../mysql-operator/) 目录。
 
 ## 安装
 
-要安装 MySQL Operator 和 MySQL InnoDB 集群，请运行：
+要安装 MySQL InnoDB 集群，请运行：
 
 ```bash
 make install

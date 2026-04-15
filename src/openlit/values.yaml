@@ -1,0 +1,22 @@
+# OpenLIT Helm Chart Values
+# https://github.com/openlit/openlit
+
+# OpenLIT backend configuration
+openlit:
+  # AI observability configuration
+  ai:
+    enabled: true
+
+  # Resource configuration
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 8080

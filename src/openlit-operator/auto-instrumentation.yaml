@@ -1,0 +1,13 @@
+apiVersion: openlit.io/v1alpha1
+kind: AutoInstrumentation
+metadata:
+  name: my-instrumentation
+spec:
+  selector:
+    matchLabels:
+      app: my-ai-app
+  python:
+    instrumentation:
+      enabled: true
+  otlp:
+    endpoint: 'http://openlit.openlit.svc:4318'

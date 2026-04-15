@@ -2,7 +2,9 @@
 
 ## 简介
 
-PostgreSQL 是一个强大的开源对象关系数据库系统，已有超过 35 年的活跃开发。
+PostgreSQL 是一个功能强大的开源对象关系型数据库系统，拥有超过 35 年的活跃开发历史。
+
+此 Chart 部署独立的 PostgreSQL 实例。如需 Operator 管理的 PostgreSQL（支持自动高可用、故障转移、备份和监控），请参阅 [postgres-operator](../postgres-operator/) 目录。
 
 ## 安装
 

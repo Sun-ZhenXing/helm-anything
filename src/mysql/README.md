@@ -1,12 +1,14 @@
-# MySQL (Oracle MySQL Operator)
+# MySQL InnoDB Cluster
 
 ## Introduction
 
-MySQL Operator for Kubernetes manages MySQL InnoDB Cluster in Kubernetes. It is brought to you by the MySQL team at Oracle.
+MySQL InnoDB Cluster provides a complete high availability solution for MySQL. This chart deploys a MySQL InnoDB Cluster instance.
+
+The MySQL Operator must be installed first — see the [mysql-operator](../mysql-operator/) directory.
 
 ## Installation
 
-To install MySQL Operator and MySQL InnoDB Cluster, run:
+To install MySQL InnoDB Cluster, run:
 
 ```bash
 make install

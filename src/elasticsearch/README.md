@@ -4,6 +4,8 @@
 
 Elasticsearch is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases.
 
+This chart deploys a standalone Elasticsearch instance. For operator-managed Elasticsearch with automated provisioning, scaling, upgrades, and backup, see the [elasticsearch-operator](../elasticsearch-operator/) directory.
+
 ## Installation
 
 To install Elasticsearch, run:

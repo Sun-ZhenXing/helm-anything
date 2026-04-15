@@ -1,10 +1,12 @@
-# NebulaGraph
+# NebulaGraph Cluster
 
 ## Introduction
 
 NebulaGraph is an open-source distributed graph database built for super large-scale graphs with milliseconds of latency. It delivers high performance, scalability, and availability for storing and processing graph data.
 
-This Helm chart deploys NebulaGraph cluster using the NebulaGraph Operator on Kubernetes.
+This Helm chart deploys a NebulaGraph cluster on Kubernetes.
+
+The NebulaGraph Operator must be installed first — see the [nebulagraph-operator](../nebulagraph-operator/) directory.
 
 ## Installation
 
@@ -12,15 +14,6 @@ To install NebulaGraph, run:
 
 ```bash
 make install
-```
-
-## Prerequisites
-
-NebulaGraph Operator must be installed first:
-
-```bash
-helm repo add nebula-operator https://vesoft-inc.github.io/nebula-operator/charts
-helm install nebula-operator nebula-operator/nebula-operator --namespace nebula-operator --create-namespace
 ```
 
 ## Usage

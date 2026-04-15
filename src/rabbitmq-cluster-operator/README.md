@@ -4,6 +4,8 @@
 
 The RabbitMQ Cluster Operator is a Kubernetes operator that automates the deployment and management of RabbitMQ clusters on Kubernetes.
 
+For a standalone RabbitMQ deployment (without operator), see the [rabbitmq](../rabbitmq/) directory.
+
 ## Installation
 
 To install RabbitMQ Cluster Operator, run:
@@ -17,7 +19,7 @@ make install
 After installation, verify the deployment:
 
 ```bash
-kubectl get pods -n rabbitmq-cluster-operator
+kubectl get pods -n rabbitmq-operator
 ```
 
 To create a RabbitMQ cluster, apply a RabbitmqCluster custom resource:

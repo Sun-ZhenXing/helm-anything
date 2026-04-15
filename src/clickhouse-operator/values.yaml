@@ -1,0 +1,5 @@
+# ClickHouse Operator Configuration
+# https://github.com/Altinity/clickhouse-operator
+
+# Default values for altinity-clickhouse-operator
+# Uses chart defaults for most settings
