@@ -1,0 +1,152 @@
+# SigNoz OTel Gateway Helm Chart Values
+# https://github.com/SigNoz/charts/blob/main/charts/signoz-otel-gateway/values.yaml
+# Chart version: 0.0.4 | App version: v0.0.16
+
+replicaCount: 1
+
+image:
+  repository: docker.io/signoz/signoz-otel-gateway
+  pullPolicy: IfNotPresent
+  tag: ''
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: '1'
+    memory: 1Gi
+
+service:
+  type: ClusterIP
+  annotations: {}
+  ports:
+    otlp-grpc:
+      enabled: true
+      containerPort: 4317
+      servicePort: 4317
+      protocol: TCP
+    otlp-http:
+      enabled: true
+      containerPort: 4318
+      servicePort: 4318
+      protocol: TCP
+    metrics:
+      enabled: true
+      containerPort: 8888
+      servicePort: 8888
+      protocol: TCP
+    healthz:
+      enabled: true
+      containerPort: 13133
+      servicePort: 13133
+      protocol: TCP
+    httplog-heroku:
+      enabled: true
+      containerPort: 8081
+      servicePort: 8081
+      protocol: TCP
+    httplog-json:
+      enabled: true
+      containerPort: 8082
+      servicePort: 8082
+      protocol: TCP
+
+# Ingress for OTLP HTTP (and optional gRPC)
+ingress:
+  - name: http
+    ingressClassName: nginx
+    annotations: {}
+    hosts:
+      - host: otel-gateway.example.com
+        paths:
+          - path: /v1/logs
+            pathType: ImplementationSpecific
+            port: 4318
+          - path: /v1/metrics
+            pathType: ImplementationSpecific
+            port: 4318
+          - path: /v1/traces
+            pathType: ImplementationSpecific
+            port: 4318
+          - path: /logs/json
+            pathType: ImplementationSpecific
+            port: 8082
+          - path: /logs/heroku
+            pathType: ImplementationSpecific
+            port: 8081
+    tls: []
+    # Uncomment to enable TLS:
+    # - secretName: otel-gateway-tls
+    #   hosts:
+    #     - otel-gateway.example.com
+  - name: grpc
+    ingressClassName: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: GRPC
+    hosts:
+      - host: otel-gateway.example.com
+        paths:
+          - path: /opentelemetry.proto.collector.logs.v1.LogsService/Export
+            pathType: ImplementationSpecific
+            port: 4317
+          - path: /opentelemetry.proto.collector.metrics.v1.MetricsService/Export
+            pathType: ImplementationSpecific
+            port: 4317
+          - path: /opentelemetry.proto.collector.trace.v1.TraceService/Export
+            pathType: ImplementationSpecific
+            port: 4317
+    tls: []
+
+# OTel Collector pipeline config.
+# Forward all signals to a SigNoz backend (signoz/signoz) via OTLP.
+# Replace the endpoint with the address of your SigNoz OTel Collector service.
+config:
+  create: true
+  extensions:
+    health_check:
+      endpoint: 0.0.0.0:13133
+      path: /healthz
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+          max_recv_msg_size_mib: 16
+        http:
+          cors:
+            allowed_origins:
+              - '*'
+          endpoint: 0.0.0.0:4318
+  httplogreceiver/heroku:
+    endpoint: 0.0.0.0:8081
+    source: heroku
+  httplogreceiver/json:
+    endpoint: 0.0.0.0:8082
+    source: json
+  processors:
+    batch:
+      send_batch_max_size: 10000
+      send_batch_size: 10000
+      timeout: 10s
+  exporters:
+    otlp:
+      endpoint: signoz-otel-collector.platform.svc.cluster.local:4317
+      tls:
+        insecure: true
+  service:
+    extensions:
+      - health_check
+    pipelines:
+      traces:
+        receivers: [otlp]
+        processors: [batch]
+        exporters: [otlp]
+      metrics:
+        receivers: [otlp]
+        processors: [batch]
+        exporters: [otlp]
+      logs:
+        receivers: [otlp, httplogreceiver/heroku, httplogreceiver/json]
+        processors: [batch]
+        exporters: [otlp]

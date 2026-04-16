@@ -1,0 +1,83 @@
+# SigNoz Helm Chart Values
+# https://github.com/SigNoz/charts/blob/main/charts/signoz/values.yaml
+# Chart version: 0.119.0 | App version: v0.119.0
+# Note: frontend + queryService were merged into a single `signoz` component since v0.76
+
+global:
+  cloud: other
+  clusterName: ''
+
+# SigNoz UI + API (unified component since v0.76)
+signoz:
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 200Mi
+    limits:
+      cpu: 750m
+      memory: 1Gi
+  ingress:
+    enabled: true
+    className: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: '0'
+    hosts:
+      - host: signoz.example.com
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            port: 8080
+    tls: []
+    # Uncomment to enable TLS:
+    # - secretName: signoz-tls
+    #   hosts:
+    #     - signoz.example.com
+  persistence:
+    enabled: true
+    size: 1Gi
+
+# OpenTelemetry Collector (receives traces/metrics/logs from applications)
+otelCollector:
+  replicaCount: 1
+  resources:
+    requests:
+      cpu: 100m
+      memory: 200Mi
+    limits:
+      cpu: '1'
+      memory: 2Gi
+  ingress:
+    enabled: false
+    className: ''
+    annotations: {}
+    hosts:
+      - host: otelcollector.example.com
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            port: 4318
+    tls: []
+
+# ClickHouse (telemetry data storage)
+clickhouse:
+  enabled: true
+  persistence:
+    enabled: true
+    size: 20Gi
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: '2'
+      memory: 4Gi
+  zookeeper:
+    replicaCount: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
